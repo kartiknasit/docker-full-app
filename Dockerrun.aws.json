@@ -5,25 +5,29 @@
             "name": "react-client",
             "image": "kartiknasit/react-client",
             "hostname": "react-client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "api-backend",
             "image": "kartiknasit/api-backend",
             "hostname": "api-backend",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "worker",
             "image": "kartiknasit/worker",
             "hostname": "worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "api-gateway",
             "image": "kartiknasit/api-gateway",
             "hostname": "api-gateway",
             "essential": true,
+            "memory": 128,
             "portMappings": [
                 {
                     "hostPort": 80,
