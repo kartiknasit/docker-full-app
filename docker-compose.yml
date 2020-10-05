@@ -25,7 +25,7 @@ services:
             - REDIS_PORT=6379
             - PGUSER=postgres
             - PGHOST=postgres
-            - PGDATABASE=postgres
+            - PGDATABASE=database-1
             - PGPASSWORD=postgres
             - PGPORT=5432
     react-client:
