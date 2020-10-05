@@ -11,7 +11,7 @@ after_success:
     - docker build -t kartiknasit/api-backend ./server
     - docker build -t kartiknasit/worker ./worker
     #Login to Docker Hub
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
     #Push all the built images
     - docker push kartiknasit/react-client
     - docker push kartiknasit/api-gateway
