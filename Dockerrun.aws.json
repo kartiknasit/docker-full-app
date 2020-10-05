@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "react-client",
+            "image": "kartiknasit/react-client",
+            "hostname": "react-client",
+            "essential": false
+        },
+        {
+            "name": "api-backend",
+            "image": "kartiknasit/api-backend",
+            "hostname": "api-backend",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "kartiknasit/worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "api-gateway",
+            "image": "kartiknasit/api-gateway",
+            "hostname": "api-gateway",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "react-client",
+                "api-backend"
+            ]
+        }
+    ]
+}
