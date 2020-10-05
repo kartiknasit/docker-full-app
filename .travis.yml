@@ -16,4 +16,15 @@ after_success:
     - docker push kartiknasit/react-client
     - docker push kartiknasit/api-gateway
     - docker push kartiknasit/api-backend
-    - docker push kartiknasit/worker 
+    - docker push kartiknasit/worker
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "docker-full-app"
+    evn: "DockerFullApp-env"
+    bucket_name: "elasticbeanstalk-us-east-1-791283579913"
+    bucket_path: "docker-full-app"
+    on:
+        branch: master
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
