@@ -1,0 +1,19 @@
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t kartiknasit/docker-full-app-test -f ./react-client/Dockerfile.dev ./react-client
+script:
+    - docker run kartiknasit/docker-full-app-test npm test -- --coverage
+after_success:
+    - docker build -t kartiknasit/react-client ./react-client
+    - docker build -t kartiknasit/api-gateway ./nginx
+    - docker build -t kartiknasit/api-backend ./server
+    - docker build -t kartiknasit/worker ./worker
+    #Login to Docker Hub
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    #Push all the built images
+    - docker push kartiknasit/react-client
+    - docker push kartiknasit/api-gateway
+    - docker push kartiknasit/api-backend
+    - docker push kartiknasit/worker
